@@ -30,6 +30,17 @@ class QuizBrain {
         true),
   ];
 
+  bool isFinished() {
+    if (_questionNumber == _questions.length - 1) {
+      return true;
+    }
+    return false;
+  }
+
+  void reset() {
+    _questionNumber = 0;
+  }
+
   void nextQuestion() {
     if (_questionNumber < _questions.length - 1) {
       _questionNumber++;
