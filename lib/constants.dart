@@ -17,6 +17,16 @@ const kTextSyle = TextStyle(
 );
 
 const kResultTitleStyle = TextStyle(
-  fontSize: 30,
+  fontSize: 40,
   fontWeight: FontWeight.bold,
 );
+
+const kBmiStyle = TextStyle(fontSize: 100, fontWeight: FontWeight.bold);
+
+const kResultStyle = TextStyle(
+  fontSize: 20,
+  color: Colors.green,
+  fontWeight: FontWeight.bold,
+);
+
+const kInterpretationStyle = TextStyle(fontSize: 20);
