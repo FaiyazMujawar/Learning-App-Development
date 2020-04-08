@@ -16,7 +16,9 @@ class _PriceScreenState extends State<PriceScreen> {
   // Variable Declarations
 
   String currency = 'USD';
-  String convertedCurrency = '?';
+  String BTC = '?';
+  String ETH = '?';
+  String LTC = '?';
   NetworkHelper networkHelper = NetworkHelper();
 
   DropdownButton getAndroidMenu() {
@@ -66,12 +68,17 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 
   void setPriceData() async {
-    dynamic data;
-    String url =
-        'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=$currency&api_key=bf118cabe469da9b949c5d32ca4c3ebc727712a55aebc6813688aa2af0a5b726';
-    data = await networkHelper.getData(url);
+    dynamic btc, eth, ltc;
+    btc = await networkHelper.getData(
+        'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=$currency&api_key=bf118cabe469da9b949c5d32ca4c3ebc727712a55aebc6813688aa2af0a5b726');
+    eth = await networkHelper.getData(
+        'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=$currency&api_key=bf118cabe469da9b949c5d32ca4c3ebc727712a55aebc6813688aa2af0a5b726');
+    ltc = await networkHelper.getData(
+        'https://min-api.cryptocompare.com/data/price?fsym=LTC&tsyms=$currency&api_key=bf118cabe469da9b949c5d32ca4c3ebc727712a55aebc6813688aa2af0a5b726');
     setState(() {
-      convertedCurrency = data[currency].toString();
+      BTC = btc[currency].toString();
+      ETH = eth[currency].toString();
+      LTC = ltc[currency].toString();
     });
   }
 
@@ -87,43 +94,79 @@ class _PriceScreenState extends State<PriceScreen> {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-            child: Card(
-              color: Colors.lightBlueAccent,
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      '1 BTC = $convertedCurrency $currency',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Card(
+                  color: Colors.lightBlueAccent,
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          '1 BTC = $BTC $currency',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      '1 ETH = $convertedCurrency $currency',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      '1 LTC = $convertedCurrency $currency',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                Card(
+                  color: Colors.lightBlueAccent,
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          '1 ETH = $ETH $currency',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.lightBlueAccent,
+                  elevation: 5.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          '1 LTC = $LTC $currency',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
@@ -138,3 +181,9 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 }
+
+/* 
+
+                    
+
+ */
